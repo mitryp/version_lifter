@@ -5,6 +5,7 @@ import 'package:io/ansi.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:version_lifter/src/application/info/gather_info.dart';
 import 'package:version_lifter/src/application/info/print_info.dart';
+import 'package:version_lifter/src/application/lift/lift_pubspec_version.dart';
 import 'package:version_lifter/src/application/lift/next_version_by_type.dart';
 import 'package:version_lifter/src/domain/constraints/version_type.dart';
 import 'package:version_lifter/src/domain/errors/version_lifter_error.dart';
@@ -82,5 +83,11 @@ class LiftCommand extends Command<void> {
     if (argResults.flag(dryRunFlagName)) {
       return;
     }
+
+    await liftPubspecVersion(
+      root: root,
+      currentVersion: version,
+      nextVersion: nextVersion,
+    );
   }
 }

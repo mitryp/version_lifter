@@ -10,11 +10,10 @@ Future<void> liftPubspecVersion({
 }) async {
   final pubspecFile = File.fromUri(root.uri.resolve(pubspecFileName));
   final pubspecStr = await pubspecFile.readAsString();
-
   // replace the exact entries of the version with the new version
   final newContent = pubspecStr.replaceAll(
-    currentVersion.toString(),
-    nextVersion.canonicalizedVersion,
+    RegExp(r'version:\s*' + RegExp.escape(currentVersion.toString())),
+    'version: ${nextVersion.canonicalizedVersion}',
   );
 
   await pubspecFile.writeAsString(newContent);
