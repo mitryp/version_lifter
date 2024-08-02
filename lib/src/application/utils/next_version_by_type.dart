@@ -1,14 +1,15 @@
 import 'package:pub_semver/pub_semver.dart';
 
 import '../../domain/constraints/version_type.dart';
-import '../utils/version_copy_with.dart';
+import 'version_ext.dart';
 
 extension NextVersionByType on Version {
   Version nextByType({
     required VersionType type,
     String? build,
     String? pre,
-    bool keepBuild = false,
+    bool keepBuild = true,
+    bool incrementBuild = false,
     bool keepPre = false,
   }) {
     final nextCleanVersion = switch (type) {
@@ -17,8 +18,8 @@ extension NextVersionByType on Version {
       VersionType.major => nextMajor,
     };
 
-    final newBuild = build ?? this.build.join(VersionCopyWith.separator);
-    final newPre = pre ?? preRelease.join(VersionCopyWith.separator);
+    final newBuild = build ?? (incrementBuild ? nextBuild : buildStr);
+    final newPre = pre ?? preRelease.join(VersionExt.separator);
 
     return nextCleanVersion.copyWith(
       build: keepBuild ? newBuild : null,

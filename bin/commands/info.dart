@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:version_lifter/src/application/common/build_platform_lifters.dart';
 import 'package:version_lifter/src/application/info/gather_info.dart';
 import 'package:version_lifter/src/application/info/print_info.dart';
 
@@ -14,7 +15,10 @@ class InfoCommand extends Command<void> {
 
   @override
   Future<void> run() async {
-    final dir = Directory.current;
-    printPackageInfo(await gatherInfo(dir));
+    final root = Directory.current;
+    final lifters = await buildPlatformLifters(root);
+    final info = await gatherInfo(root, lifters);
+
+    printPackageInfo(info);
   }
 }

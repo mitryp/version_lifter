@@ -1,10 +1,12 @@
-import 'package:version_lifter/src/application/platform/lift_ios.dart';
+import 'package:version_lifter/src/application/platform/ios/ios_platform_lifter.dart';
+import 'package:version_lifter/src/application/platform/passing_platform_lifter.dart';
 import 'package:version_lifter/src/domain/constraints/project_platform.dart';
 
-import '../../domain/typedefs.dart';
+import '../../domain/abs/platform_lifter.dart';
 
-PlatformLifter buildPlatformLifter(ProjectPlatform platform) =>
-    switch (platform) {
-      ProjectPlatform.ios => liftIOS,
-      _ => ({required currentVersion, required nextVersion}) async {},
-    };
+extension PlatformLifterBuilder on ProjectPlatform {
+  PlatformLifter buildLifter() => switch (this) {
+        ProjectPlatform.ios => const IosPlatformLifter(),
+        final platform => PassingPlatformLifter(platform),
+      } as PlatformLifter;
+}

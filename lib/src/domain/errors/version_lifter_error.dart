@@ -11,8 +11,7 @@ abstract class VersionLifterError extends Error {
 }
 
 class NotAPackageError extends VersionLifterError {
-  NotAPackageError()
-      : super('Current directory does not contain a $pubspecFileName');
+  NotAPackageError() : super('Current directory does not contain a $pubspecFileName');
 }
 
 class NoVersionTypeError extends VersionLifterError {
@@ -21,4 +20,8 @@ class NoVersionTypeError extends VersionLifterError {
           'No version type was specified when running.\n'
           'It must be one of: ${VersionType.values.map((e) => e.name).join(', ')}',
         );
+}
+
+class NoIosConfigurationError extends VersionLifterError {
+  NoIosConfigurationError() : super('The iOS build configuration of this project is not supported');
 }

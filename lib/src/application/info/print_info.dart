@@ -1,4 +1,5 @@
 import 'package:io/ansi.dart';
+import 'package:version_lifter/src/application/utils/platform_with_info_repr.dart';
 import 'package:version_lifter/src/domain/typedefs.dart';
 
 void printPackageInfo(PackageInfo info) {
@@ -10,7 +11,7 @@ void printPackageInfo(PackageInfo info) {
   if (info.platforms.isNotEmpty) {
     print(
       'Platforms: '
-      '${cyan.wrap(info.platforms.map((e) => e.name).join(', '))}',
+      '${cyan.wrap(info.platforms.map((e) => e.representation).join(', '))}',
     );
   } else {
     print(yellow.wrap('No platform code found'));
