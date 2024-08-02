@@ -20,6 +20,7 @@ class LiftCommand extends Command<void> {
   static const incrementBuildVersionFlagName = 'increment-build';
   static const preVersionFlagName = 'pre';
   static const iosPostLiftFlagName = 'post-ios';
+  static const versionFlagName = 'version';
 
   LiftCommand() {
     argParser
@@ -28,7 +29,13 @@ class LiftCommand extends Command<void> {
       ..addFlag(keepPrereleaseFlagName, defaultsTo: false)
       ..addFlag(incrementBuildVersionFlagName, defaultsTo: true)
       ..addOption(buildVersionFlagName, abbr: 'b', help: 'Set custom build version')
-      ..addOption(preVersionFlagName, help: 'Set custom pre-release version');
+      ..addOption(preVersionFlagName, help: 'Set custom pre-release version')
+      ..addOption(
+        versionFlagName,
+        abbr: 'v',
+        help: 'Set a specific version in a SemVer format. '
+            'If provided, all other flags will be ignored',
+      );
 
     for (final platform in ProjectPlatform.values) {
       final flag = platform.postLiftCommandFlag;
@@ -68,9 +75,11 @@ class LiftCommand extends Command<void> {
   @override
   Future<void> run() async {
     final argResults = this.argResults!;
+    final versionStr = argResults.option(versionFlagName);
+    final versionOverride = versionStr != null ? Version.parse(versionStr) : null;
     final versionType = VersionType.values.where((type) => argResults.flag(type.name)).firstOrNull;
 
-    if (versionType == null) {
+    if (versionStr == null && versionType == null) {
       throw NoVersionTypeError();
     }
 
@@ -89,16 +98,21 @@ class LiftCommand extends Command<void> {
 
     final (:pubspec, platforms: _) = info;
     final version = pubspec.version ?? Version.none;
-    final nextVersion = version.nextByType(
-      type: versionType,
-      keepBuild: keepBuild,
-      incrementBuild: incrementBuild,
-      build: buildVersion,
-      keepPre: keepPre,
-      pre: preVersion,
-    );
+    final nextVersion = versionOverride ??
+        version.nextByType(
+          type: versionType!,
+          keepBuild: keepBuild,
+          incrementBuild: incrementBuild,
+          build: buildVersion,
+          keepPre: keepPre,
+          pre: preVersion,
+        );
 
-    print('Lifting ${versionType.name} version:');
+    if (versionType != null) {
+      print('Lifting ${versionType.name} version:');
+    } else if (versionOverride != null) {
+      print('Lifting version to $versionOverride:');
+    }
     print(
       '${cyan.wrap('$version')} -> '
       '${wrapWith('$nextVersion', [styleBold, cyan])}',

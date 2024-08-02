@@ -2,7 +2,7 @@ enum ProjectPlatform {
   android,
   ios(
     postLiftCommandFlag: 'post-ios',
-    postLiftCommandHelp: 'A command to run after iOS has been lifted. '
+    postLiftCommandHelp: 'A command to run after the iOS version has been lifted. '
         'For Flutter, consider "flutter build ios --config-only"',
   ),
   web,

@@ -18,6 +18,7 @@ class NoVersionTypeError extends VersionLifterError {
   NoVersionTypeError()
       : super(
           'No version type was specified when running.\n'
+          'Either set a specific version with -v <version>, or specify a version type to lift:\n'
           'It must be one of: ${VersionType.values.map((e) => e.name).join(', ')}',
         );
 }
