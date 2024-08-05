@@ -37,7 +37,7 @@ class IosPlatformLifter implements PlatformLifter<IosInfo> {
   Future<IosInfo> gatherInfo(Directory root) async {
     final runConf = _getRunConf(root);
 
-    final marketingVersion = runConf.buildSettings[_marketingVersionKey] as String;
+    final marketingVersion = runConf.buildSettings[_marketingVersionKey].toString();
     final projectVersion = runConf.buildSettings[_projectVersionKey] as int;
 
     return IosInfo(marketingVersion: marketingVersion, projectVersion: projectVersion);
