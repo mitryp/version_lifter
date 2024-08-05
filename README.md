@@ -3,6 +3,9 @@
 `version_lifter` is a CLI package designed to automate versioning of your Dart applications. It provides convenient
 commands to display current package information and to set and increment the package version.
 
+> The package is in its early stage, and it's advised to use git to be able to revert the changes
+> made. If you faced any issues, see [Contributing](#Contributing).
+
 ## Installation
 
 To install `version_lifter`, use the following command:
@@ -116,3 +119,8 @@ version_lifter --help
 
 `version_lifter` is a powerful tool that allows you to manage your Dart app versions effortlessly. With its flexible
 options and easy-to-use commands, you can maintain consistent and accurate versioning in your projects.
+
+## Contributing
+
+Feel free to [open an issue](https://github.com/mitryp/version_lifter/issues) whenever you face a problem caused by this
+library. PRs are also most welcome!
