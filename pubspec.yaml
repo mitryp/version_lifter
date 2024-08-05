@@ -2,6 +2,7 @@ name: version_lifter
 description: A sample command-line application with basic argument parsing.
 version: 0.1.0
 repository: https://github.com/mitryp/version_lifter
+issue_tracker: https://github.com/mitryp/version_lifter/issues
 
 environment:
   sdk: ^3.3.3
