@@ -1,4 +1,3 @@
-// todo get from pubspec
 const packageName = 'version_lifter';
 const packageVersion = '0.0.1';
 const packageDescription = 'A CLI package to automatically '
