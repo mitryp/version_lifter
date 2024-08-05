@@ -23,7 +23,7 @@ extension NextVersionByType on Version {
 
     return nextCleanVersion.copyWith(
       build: keepBuild ? newBuild : null,
-      pre: keepPre ? newPre : null,
+      pre: pre != null || keepPre ? newPre : null,
     );
   }
 }
