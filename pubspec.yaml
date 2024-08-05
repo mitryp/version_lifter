@@ -1,12 +1,11 @@
 name: version_lifter
 description: A sample command-line application with basic argument parsing.
-version: 0.0.1
-# repository: https://github.com/my_org/my_repo
+version: 0.1.0
+repository: https://github.com/mitryp/version_lifter
 
 environment:
   sdk: ^3.3.3
 
-# Add regular dependencies here.
 dependencies:
   args: ^2.4.2
   collection: ^1.18.0
