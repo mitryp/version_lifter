@@ -1,4 +1,3 @@
-import 'package:pub_semver/pub_semver.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 import 'package:version_lifter/src/application/info/parse_pubspec.dart';
