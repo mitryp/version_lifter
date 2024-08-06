@@ -1,4 +1,4 @@
-import 'package:version_lifter/src/domain/typedefs.dart';
+import '../../domain/typedefs.dart';
 
 extension PlatformWithInfoRepr on PlatformWithInfo {
   String get representation {

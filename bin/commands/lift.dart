@@ -28,7 +28,11 @@ class LiftCommand extends Command<void> {
       ..addFlag(keepBuildFlagName, defaultsTo: true)
       ..addFlag(keepPrereleaseFlagName, defaultsTo: false)
       ..addFlag(incrementBuildVersionFlagName, defaultsTo: true)
-      ..addOption(buildVersionFlagName, abbr: 'b', help: 'Set custom build version')
+      ..addOption(
+        buildVersionFlagName,
+        abbr: 'b',
+        help: 'Set custom build version',
+      )
       ..addOption(preVersionFlagName, help: 'Set custom pre-release version')
       ..addOption(
         versionFlagName,
@@ -76,8 +80,11 @@ class LiftCommand extends Command<void> {
   Future<void> run() async {
     final argResults = this.argResults!;
     final versionStr = argResults.option(versionFlagName);
-    final versionOverride = versionStr != null ? Version.parse(versionStr) : null;
-    final versionType = VersionType.values.where((type) => argResults.flag(type.name)).firstOrNull;
+    final versionOverride =
+        versionStr != null ? Version.parse(versionStr) : null;
+    final versionType = VersionType.values
+        .where((type) => argResults.flag(type.name))
+        .firstOrNull;
 
     if (versionStr == null && versionType == null) {
       throw NoVersionTypeError();
@@ -92,9 +99,12 @@ class LiftCommand extends Command<void> {
 
     final buildVersion = argResults.option(buildVersionFlagName);
     final preVersion = argResults.option(preVersionFlagName);
-    final keepBuild = buildVersion != null || argResults.flag(keepBuildFlagName);
-    final keepPre = preVersion != null || argResults.flag(keepPrereleaseFlagName);
-    final incrementBuild = buildVersion == null && argResults.flag(incrementBuildVersionFlagName);
+    final keepBuild =
+        buildVersion != null || argResults.flag(keepBuildFlagName);
+    final keepPre =
+        preVersion != null || argResults.flag(keepPrereleaseFlagName);
+    final incrementBuild =
+        buildVersion == null && argResults.flag(incrementBuildVersionFlagName);
 
     final (:pubspec, platforms: _) = info;
     final version = pubspec.version ?? Version.none;

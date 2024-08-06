@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:pub_semver/pub_semver.dart';
-import 'package:version_lifter/src/domain/constants.dart';
+import '../../domain/constants.dart';
 
 Future<void> liftPubspecVersion({
   required Directory root,

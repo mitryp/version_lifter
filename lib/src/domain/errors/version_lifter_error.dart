@@ -1,5 +1,5 @@
-import 'package:version_lifter/src/domain/constants.dart';
-import 'package:version_lifter/src/domain/constraints/version_type.dart';
+import '../constants.dart';
+import '../constraints/version_type.dart';
 
 abstract class VersionLifterError extends Error {
   final String message;
@@ -11,7 +11,8 @@ abstract class VersionLifterError extends Error {
 }
 
 class NotAPackageError extends VersionLifterError {
-  NotAPackageError() : super('Current directory does not contain a $pubspecFileName');
+  NotAPackageError()
+      : super('Current directory does not contain a $pubspecFileName');
 }
 
 class NoVersionTypeError extends VersionLifterError {
@@ -24,5 +25,6 @@ class NoVersionTypeError extends VersionLifterError {
 }
 
 class NoIosConfigurationError extends VersionLifterError {
-  NoIosConfigurationError() : super('The iOS build configuration of this project is not supported');
+  NoIosConfigurationError()
+      : super('The iOS build configuration of this project is not supported');
 }

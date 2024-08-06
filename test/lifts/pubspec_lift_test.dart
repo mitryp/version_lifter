@@ -23,7 +23,8 @@ void main() {
                 nextVersion: nextVersion,
               );
 
-              return parsePubspec(projectDir).then((pubspec) => pubspec.version);
+              return parsePubspec(projectDir)
+                  .then((pubspec) => pubspec.version);
             },
           );
 

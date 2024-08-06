@@ -20,7 +20,8 @@ void main() {
       test(
         'Other platforms\' lifters are PassingPlatformLifters',
         () {
-          final otherPlatforms = ProjectPlatform.values.whereNot((e) => e == ProjectPlatform.ios);
+          final otherPlatforms =
+              ProjectPlatform.values.whereNot((e) => e == ProjectPlatform.ios);
           final lifters = otherPlatforms.map((e) => e.buildLifter());
 
           for (final lifter in lifters) {

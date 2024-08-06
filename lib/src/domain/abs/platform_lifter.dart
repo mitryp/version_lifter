@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:version_lifter/src/domain/abs/platform_info.dart';
-import 'package:version_lifter/src/domain/typedefs.dart';
+import 'platform_info.dart';
+import '../typedefs.dart';
 
 abstract interface class PlatformLifter<TInfo extends PlatformInfo> {
   FutureOr<TInfo?> gatherInfo(Directory root);
