@@ -15,7 +15,9 @@ void main() {
     'NextVersionByType tests',
     () {
       late Version initialVersion;
-      setUp(() => initialVersion = _randomVersion(rand, pre: true, build: true));
+      setUp(
+        () => initialVersion = _randomVersion(rand, pre: true, build: true),
+      );
 
       test(
         'Patch version is lifted correctly',
@@ -59,7 +61,10 @@ void main() {
       test(
         'Build number is kept when required',
         () {
-          final nextVersion = initialVersion.nextByType(type: _randomType(rand), keepBuild: true);
+          final nextVersion = initialVersion.nextByType(
+            type: _randomType(rand),
+            keepBuild: true,
+          );
 
           expect(nextVersion.build, orderedEquals(initialVersion.build));
         },
@@ -68,9 +73,13 @@ void main() {
       test(
         'Pre version is kept when required',
         () {
-          final nextVersion = initialVersion.nextByType(type: _randomType(rand), keepPre: true);
+          final nextVersion =
+              initialVersion.nextByType(type: _randomType(rand), keepPre: true);
 
-          expect(nextVersion.preRelease, orderedEquals(initialVersion.preRelease));
+          expect(
+            nextVersion.preRelease,
+            orderedEquals(initialVersion.preRelease),
+          );
         },
       );
 
@@ -78,7 +87,10 @@ void main() {
         'Build number is overridden correctly',
         () {
           final nextBuild = '${rand.nextInt(100) + 50}';
-          final nextVersion = initialVersion.nextByType(type: _randomType(rand), build: nextBuild);
+          final nextVersion = initialVersion.nextByType(
+            type: _randomType(rand),
+            build: nextBuild,
+          );
 
           expect(nextVersion.build.join(_buildSeparator), equals(nextBuild));
         },
@@ -88,7 +100,8 @@ void main() {
         'Pre version is overridden correctly',
         () {
           final nextPre = '${rand.nextInt(100) + 50}';
-          final nextVersion = initialVersion.nextByType(type: _randomType(rand), pre: nextPre);
+          final nextVersion =
+              initialVersion.nextByType(type: _randomType(rand), pre: nextPre);
 
           expect(nextVersion.preRelease.join(_buildSeparator), equals(nextPre));
         },
@@ -142,4 +155,5 @@ Version _randomVersion(
       build: build ? '${rand.nextInt(10)}' : null,
     );
 
-VersionType _randomType(Random rand) => VersionType.values[rand.nextInt(VersionType.values.length)];
+VersionType _randomType(Random rand) =>
+    VersionType.values[rand.nextInt(VersionType.values.length)];

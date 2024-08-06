@@ -35,7 +35,10 @@ Future<T> withTestEnvironment<T>(
   }
 }
 
-Future<Directory> createTestDir(String tempFolderPath, {bool recursive = true}) async {
+Future<Directory> createTestDir(
+  String tempFolderPath, {
+  bool recursive = true,
+}) async {
   final dir = Directory(tempFolderPath);
 
   if (!await dir.exists()) {

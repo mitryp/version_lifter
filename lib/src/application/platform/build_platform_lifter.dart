@@ -1,6 +1,6 @@
-import 'package:version_lifter/src/application/platform/ios/ios_platform_lifter.dart';
-import 'package:version_lifter/src/application/platform/passing_platform_lifter.dart';
-import 'package:version_lifter/src/domain/constraints/project_platform.dart';
+import 'ios/ios_platform_lifter.dart';
+import 'passing_platform_lifter.dart';
+import '../../domain/constraints/project_platform.dart';
 
 import '../../domain/abs/platform_lifter.dart';
 

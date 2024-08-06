@@ -25,7 +25,11 @@ void main() {
       test(
         'A specific platform set is detected correctly',
         () async {
-          final platforms = {ProjectPlatform.android, ProjectPlatform.ios, ProjectPlatform.web};
+          final platforms = {
+            ProjectPlatform.android,
+            ProjectPlatform.ios,
+            ProjectPlatform.web,
+          };
 
           final actual = await withTestEnvironment(
             (projectDir) => detectPlatforms(projectDir),

@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:io/ansi.dart';
 import 'package:path/path.dart' as path;
-import 'package:version_lifter/src/application/platform/ios/ios_info.dart';
-import 'package:version_lifter/src/application/utils/version_ext.dart';
-import 'package:version_lifter/src/domain/abs/platform_lifter.dart';
+import 'ios_info.dart';
+import '../../utils/version_ext.dart';
+import '../../../domain/abs/platform_lifter.dart';
 import 'package:xcodeproj/xcodeproj.dart';
 
 import '../../../domain/errors/version_lifter_error.dart';
@@ -21,7 +21,8 @@ class IosPlatformLifter implements PlatformLifter<IosInfo> {
   const IosPlatformLifter();
 
   XCBuildConfiguration _getRunConf(Directory root) {
-    final projectPath = root.uri.resolve(path.join(_iosFolderName, _projectDir)).path;
+    final projectPath =
+        root.uri.resolve(path.join(_iosFolderName, _projectDir)).path;
     final project = XCodeProj(projectPath);
 
     final runConf = project.buildConfigurations.where(
@@ -30,17 +31,23 @@ class IosPlatformLifter implements PlatformLifter<IosInfo> {
           conf.buildSettings.containsKey(_projectVersionKey),
     );
 
-    return runConf.isNotEmpty ? runConf.first : (throw NoIosConfigurationError());
+    return runConf.isNotEmpty
+        ? runConf.first
+        : (throw NoIosConfigurationError());
   }
 
   @override
   Future<IosInfo> gatherInfo(Directory root) async {
     final runConf = _getRunConf(root);
 
-    final marketingVersion = runConf.buildSettings[_marketingVersionKey].toString();
+    final marketingVersion =
+        runConf.buildSettings[_marketingVersionKey].toString();
     final projectVersion = runConf.buildSettings[_projectVersionKey] as int;
 
-    return IosInfo(marketingVersion: marketingVersion, projectVersion: projectVersion);
+    return IosInfo(
+      marketingVersion: marketingVersion,
+      projectVersion: projectVersion,
+    );
   }
 
   @override
@@ -48,7 +55,8 @@ class IosPlatformLifter implements PlatformLifter<IosInfo> {
     final target = description.target;
     final info = await gatherInfo(root);
 
-    final xcodeprojFile = File(path.join(root.path, _iosFolderName, _projectDir, _projectName));
+    final xcodeprojFile =
+        File(path.join(root.path, _iosFolderName, _projectDir, _projectName));
 
     print('Lifting versions at ${path.basename(xcodeprojFile.path)}');
 
@@ -56,7 +64,10 @@ class IosPlatformLifter implements PlatformLifter<IosInfo> {
 
     final modifiedLines = originalLines.map((line) {
       if (line.contains(_marketingVersionKey)) {
-        return line.replaceFirst(info.marketingVersion, target.marketingVersion);
+        return line.replaceFirst(
+          info.marketingVersion,
+          target.marketingVersion,
+        );
       }
 
       final buildStr = target.buildStr;

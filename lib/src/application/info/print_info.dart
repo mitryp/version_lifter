@@ -1,6 +1,6 @@
 import 'package:io/ansi.dart';
-import 'package:version_lifter/src/application/utils/platform_with_info_repr.dart';
-import 'package:version_lifter/src/domain/typedefs.dart';
+import '../utils/platform_with_info_repr.dart';
+import '../../domain/typedefs.dart';
 
 void printPackageInfo(PackageInfo info) {
   print('In project ${styleBold.wrap(info.pubspec.name)}:');

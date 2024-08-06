@@ -19,7 +19,10 @@ void main() {
             platforms: {ProjectPlatform.ios},
             (projectDir) async {
               const lifter = IosPlatformLifter();
-              await lifter.lift(projectDir, (current: Version.none, target: targetVersion));
+              await lifter.lift(
+                projectDir,
+                (current: Version.none, target: targetVersion),
+              );
 
               return lifter.gatherInfo(projectDir);
             },
@@ -38,7 +41,10 @@ void main() {
             platforms: {ProjectPlatform.ios},
             (projectDir) async {
               const lifter = IosPlatformLifter();
-              await lifter.lift(projectDir, (current: Version.none, target: targetVersion));
+              await lifter.lift(
+                projectDir,
+                (current: Version.none, target: targetVersion),
+              );
 
               return lifter.gatherInfo(projectDir);
             },

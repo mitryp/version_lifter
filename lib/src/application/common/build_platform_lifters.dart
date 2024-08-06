@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:version_lifter/src/application/common/detect_platforms.dart';
-import 'package:version_lifter/src/application/platform/build_platform_lifter.dart';
-import 'package:version_lifter/src/domain/constraints/project_platform.dart';
+import 'detect_platforms.dart';
+import '../platform/build_platform_lifter.dart';
+import '../../domain/constraints/project_platform.dart';
 
 import '../../domain/abs/platform_lifter.dart';
 
