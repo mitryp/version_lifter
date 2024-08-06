@@ -1,3 +1,6 @@
+[![pub package](https://img.shields.io/pub/v/version_lifter.svg)](https://pub.dev/packages/version_lifter)
+[![package publisher](https://img.shields.io/pub/publisher/version_lifter.svg)](https://pub.dev/packages/version_lifter/publisher)
+
 # version_lifter CLI Tool
 
 `version_lifter` is a CLI package designed to automate versioning of your Dart applications. It provides convenient
