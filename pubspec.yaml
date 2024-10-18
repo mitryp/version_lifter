@@ -1,6 +1,6 @@
 name: version_lifter
 description: A CLI tool to simplify changing Dart and Flutter project versions.
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/mitryp/version_lifter
 issue_tracker: https://github.com/mitryp/version_lifter/issues
 
